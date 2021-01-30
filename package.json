@@ -1,0 +1,20 @@
+{
+  "name": "cash-it",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "node dist/index.ts",
+    "build": "tsc -project ./src -outDir ./dist --strict --removeComments -target ES5",
+    "test": "node test/index.js"
+  },
+  "author": "abgr",
+  "license": "WTFPL",
+  "dependencies": {
+    "@cloudflare/workers-types": "^2.1.0",
+    "mongodb": "^3.6.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}

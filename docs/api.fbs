@@ -1,0 +1,81 @@
+namespace onlineExchange;
+rpc_service OnlineExchange {
+  NewExchange(NewExchangeRequest):NewExchangeResponse;
+  RefreshExchange(RefreshExchangeRequest):RefreshExchangeResponse;
+  GetExchange(GetExchangeRequest):GetExchangeResponse;
+  ListNotifs(ListNotifsRequest):ListNotifsResponse;
+}
+table NewExchangeRequest {
+    from_key: [ubyte];
+    args_sign: [ubyte];
+    raw_args: NewExchangeRequestArgs;
+}
+table RefreshExchangeRequest {
+    from_key: [ubyte];
+    args_sign: [ubyte];
+    raw_args: RefreshExchangeRequestArgs;
+}
+table RefreshExchangeRequestArgs{
+    now:ulong;
+    cancel:bool;
+    id:string;
+}
+table RefreshExchangeResponse{
+    now:ulong;
+    expire_at:ulong;
+}
+table NewExchangeResponse{
+    now:ulong;
+    id:string;
+}
+
+table GetExchangeRequest {
+    from_key: [ubyte];
+    args_sign: [ubyte];
+    raw_args: GetExchangeRequestArgs;
+}
+table GetExchangeRequestArgs{
+    now:ulong;
+    id:string;
+}
+table GetExchangeResponse{
+    conn_url:string;
+    langs:[string];
+    amount:uint;
+    unit:string;
+}
+table ListNotifsRequest {
+    from_key: [ubyte];
+    args_sign: [ubyte];
+    raw_args: ListNotifsRequestArgs;
+}
+table ListNotifsRequestArgs{
+    limit:uint;
+}
+table ListNotifsResponse{
+    kind:string;
+    data:[ubyte];
+}
+table NotifSuggestExchange{
+    exchage_id:string;
+}
+table NewExchangeRequestArgs{
+    now: uint;
+    amount: uint;
+    unit:string;
+    targets:[EchangeTarget];
+    conn_url:string;
+    langs:[string];
+    geos:[GeoPoint];
+    maxNotifs:uint8;
+    expire_at:ulong;
+}
+table GeoPoint {
+    lng:float;
+    lat:float;
+    title:string;
+}
+table EchangeTarget{
+    amount:uint;
+    unit:string;
+}
